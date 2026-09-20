@@ -11,6 +11,9 @@ from auth import verify_api_key, pwd_context
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="API Marketplace Setup")
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse(url="/docs")
 
 class KeyRequest(BaseModel):
     email: str
